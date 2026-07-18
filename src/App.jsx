@@ -307,7 +307,7 @@ export default function App() {
                 I'm a scientist working at the intersection of biocatalysis,
                 chemoenzymatic synthesis, and process chemistry. My doctoral research at
                 the University of Groningen was supported
-                by a Marie Curie Cofund fellowship, and focused on chemoenzymatic synthesis andflavin-dependent
+                by a Marie Curie Cofund fellowship, and focused on chemoenzymatic synthesis and flavin-dependent
                 nitroreductases and photoenzymatic catalysis &mdash; using enzymes and
                 light together to run selective, sustainable reactions that are otherwise
                 difficult to control. That work carried into industry, where I worked on
