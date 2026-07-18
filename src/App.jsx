@@ -105,6 +105,84 @@ function ProjectCard({ title, tagline, description, tags, links, status }) {
   );
 }
 
+// A small deterministic abstract "reaction schematic" used as a stand-in
+// graphical abstract for each paper. Not a real structure — a visual motif
+// in the site's own palette, varied per paper via a seed number.
+function GraphicalAbstract({ seed = 0, accent = "flavin" }) {
+  const accentColor =
+    accent === "flavin" ? "#E8C547" : accent === "chlorophyll" ? "#4C8B5C" : "#7FD8C5";
+  const accentDim =
+    accent === "flavin" ? "#B89A34" : accent === "chlorophyll" ? "#3A6647" : "#5AA898";
+
+  // simple seeded pseudo-random offsets so each card looks slightly different
+  const r = (n) => {
+    const x = Math.sin(seed * 999 + n * 37.1) * 10000;
+    return x - Math.floor(x);
+  };
+
+  const nodesLeft = [0, 1, 2].map((i) => ({
+    x: 20 + i * 22 + r(i) * 6,
+    y: 40 + (i % 2 === 0 ? 0 : 24) + r(i + 10) * 8,
+  }));
+  const nodesRight = [0, 1, 2].map((i) => ({
+    x: 220 + i * 20 + r(i + 20) * 6,
+    y: 36 + (i % 2 === 0 ? 6 : 26) + r(i + 30) * 8,
+  }));
+
+  return (
+    <svg viewBox="0 0 320 100" className="w-full h-24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#2A3733" strokeWidth="1.6" fill="none">
+        <polyline points={nodesLeft.map((n) => `${n.x},${n.y}`).join(" ")} />
+      </g>
+      {nodesLeft.map((n, i) => (
+        <circle key={`l${i}`} cx={n.x} cy={n.y} r={i === 1 ? 4 : 2.5} fill={i === 1 ? accentColor : "#3A4A44"} />
+      ))}
+
+      <line x1="150" y1="50" x2="200" y2="50" stroke={accentDim} strokeWidth="1.4" strokeDasharray="3 6" />
+      <path d={`M194 44 L202 50 L194 56`} stroke={accentDim} strokeWidth="1.4" fill="none" />
+
+      <g stroke="#2A3733" strokeWidth="1.6" fill="none">
+        <polyline points={nodesRight.map((n) => `${n.x},${n.y}`).join(" ")} />
+      </g>
+      {nodesRight.map((n, i) => (
+        <circle key={`r${i}`} cx={n.x} cy={n.y} r={i === 1 ? 4.5 : 2.5} fill={i === 1 ? accentColor : "#3A4A44"} />
+      ))}
+      <circle cx={nodesRight[1].x} cy={nodesRight[1].y} r="9" fill="none" stroke={accentColor} strokeWidth="1" opacity="0.45" />
+    </svg>
+  );
+}
+
+function ResearchCard({ title, journal, year, doi, summary, skills, accent }) {
+  return (
+    <a
+      href={`https://doi.org/${doi}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block rounded-2xl border border-ink-line bg-ink-panel p-6 hover:border-chlorophyll/50 transition-colors"
+    >
+      <div className="rounded-lg bg-ink mb-5 border border-ink-line/60 px-2">
+        <GraphicalAbstract seed={year.charCodeAt(0) + title.length} accent={accent} />
+      </div>
+      <div className="flex items-baseline justify-between gap-3 mb-2">
+        <span className="text-sm text-chlorophyll-bright italic">{journal}</span>
+        <span className="font-mono text-xs text-muted shrink-0">{year}</span>
+      </div>
+      <h3 className="font-display text-lg text-paper group-hover:text-flavin transition-colors leading-snug mb-3">
+        {title}
+      </h3>
+      <p className="text-sm text-muted leading-relaxed mb-4">{summary}</p>
+      <div className="flex flex-wrap gap-2">
+        {skills.map((s) => (
+          <span key={s} className="text-[11px] font-mono text-muted border border-ink-line rounded px-2 py-0.5">
+            {s}
+          </span>
+        ))}
+      </div>
+      <p className="font-mono text-[11px] text-muted mt-4 pt-4 border-t border-ink-line">doi:{doi}</p>
+    </a>
+  );
+}
+
 function PublicationRow({ authors, title, journal, year, doi, note }) {
   return (
     <a
@@ -184,15 +262,15 @@ export default function App() {
             substrate &rarr; biocatalyst &rarr; product
           </p>
           <div className="flex items-end gap-5 flex-wrap">
-  <img
-    src="/faizan.jpeg"
-    alt="Faizan Bhat"
-    className="w-60 h-60 rounded-xl object-cover border border-ink-line"
-  />
-  <h1 className="font-display text-5xl md:text-7xl text-paper leading-[1.05] tracking-tight">
-    Dr. Faizan Bhat
-  </h1>
-</div>
+            <img
+              src="/faizan.jpeg"
+              alt="Faizan Bhat"
+              className="w-60 h-60 rounded-xl object-cover border border-ink-line"
+            />
+            <h1 className="font-display text-5xl md:text-7xl text-paper leading-[1.05] tracking-tight">
+              Dr. Faizan Bhat
+            </h1>
+          </div>
           <p className="font-mono text-sm md:text-base text-chlorophyll-bright mt-4">
             B.Pharm &middot; M.Pharm &middot; PhD &middot; PDF
           </p>
@@ -220,17 +298,21 @@ export default function App() {
       <section className="px-6 py-4">
         <div className="max-w-5xl mx-auto border-t border-ink-line pt-16">
           <div className="grid md:grid-cols-[1fr_2fr] gap-8">
-            <p className="font-mono text-xs text-muted uppercase tracking-wider">About</p>
+            <div>
+             
+              <p className="font-mono text-xs text-muted uppercase tracking-wider">About</p>
+            </div>
             <div className="space-y-5 text-muted leading-relaxed max-w-2xl">
               <p>
                 I'm a scientist working at the intersection of biocatalysis,
                 chemoenzymatic synthesis, and process chemistry. My doctoral research at
-                the University of Groningen, supported by a Marie Curie Cofund
-                fellowship, focused on enzymatic and photoenzymatic catalysis across a
-                range of enzyme classes &mdash; developing selective, sustainable routes
-                to complex molecules that are otherwise difficult to access. That work
-                carried into industry, where I worked on chemoenzymatic synthesis and
-                scale-up optimization, leading to DoE process optimization campaigns
+                the University of Groningen was supported
+                by a Marie Curie Cofund fellowship, and focused on chemoenzymatic synthesis andflavin-dependent
+                nitroreductases and photoenzymatic catalysis &mdash; using enzymes and
+                light together to run selective, sustainable reactions that are otherwise
+                difficult to control. That work carried into industry, where I worked on
+                chemoenzymatic synthesis and scale-up optimization, leading DoE process
+                optimization, and client oriented campaigns as a Senior Scientist.
               </p>
               <p>
                 I'm currently building out a computational side to that domain expertise
@@ -286,42 +368,61 @@ export default function App() {
 
       <section id="publications" className="px-6 py-24 bg-ink-panel/30">
         <div className="max-w-5xl mx-auto">
-          <SectionLabel index="02">Publications</SectionLabel>
-          <div>
-            <PublicationRow
+          <SectionLabel index="02">Research</SectionLabel>
+          <div className="grid md:grid-cols-2 gap-6">
+            <ResearchCard
               title="Tailored photoenzymatic systems for selective reduction of aliphatic and aromatic nitro compounds fueled by light"
-              authors="Bhat MF, Tsaturyan S, van Merkerk R, Fu H, et al., Poelarends GJ"
               journal="Nature Communications, 14, 5442"
               year="2023"
               doi="10.1038/s41467-023-41194-w"
+              accent="flavin"
+              summary="Developed light-powered enzymatic systems that selectively reduce nitro groups to amines under mild, aqueous conditions — replacing traditional metal catalysts and harsh reagents with a cleaner, more selective route."
+              skills={["Photobiocatalysis", "Flavin-dependent enzymes", "Reaction engineering", "Selectivity control"]}
             />
-            <PublicationRow
+            <ResearchCard
               title="Chemoenzymatic Asymmetric Synthesis of Complex Heterocycles: Dihydrobenzoxazinones and Dihydroquinoxalinones"
-              authors="Bhat F, Prats Luján A, Saifuddin M, Poelarends G"
               journal="ACS Catalysis, 12, 11421–11427"
               year="2022"
               doi="10.1021/acscatal.2c03008"
+              accent="chlorophyll"
+              summary="Combined enzymatic and chemical steps in a one-pot cascade to build chiral heterocyclic scaffolds relevant to drug-like molecules, avoiding the multi-step purification a purely chemical route would need."
+              skills={["Cascade design", "Asymmetric synthesis", "Heterocycle chemistry", "Biocatalyst selection"]}
             />
-            <PublicationRow
+            <ResearchCard
               title="Chemo- and Enantioselective Photoenzymatic Ketone Reductions Using a Promiscuous Flavin-dependent Nitroreductase"
-              authors="Prats Luján A, Bhat MF, Saravanan T, Poelarends GJ"
               journal="ChemCatChem, 14, e202200043"
               year="2022"
               doi="10.1002/cctc.202200043"
+              accent="spectral"
+              summary="Repurposed a nitroreductase for enantioselective ketone reduction under light, expanding a naturally narrow enzyme's function into new synthetic territory through substrate and condition screening."
+              skills={["Enzyme promiscuity", "Photoenzymatic reduction", "Enantioselective catalysis"]}
             />
-            <PublicationRow
+            <ResearchCard
               title="Exploring the Substrate Scope and Catalytic Promiscuity of Nitroreductase-Like Enzymes"
-              authors="Prats Luján A, Bhat MF, Saravanan T, Poelarends GJ"
-              journal="Advanced Synthesis &amp; Catalysis, 366(22), 4679–4687"
+              journal="Advanced Synthesis & Catalysis, 366(22), 4679–4687"
               year="2024"
               doi="10.1002/adsc.202400220"
+              accent="flavin"
+              summary="Systematically mapped which substrates a family of nitroreductase-like enzymes will accept, building the structure–activity foundation later used to target new reaction types with these enzymes."
+              skills={["Substrate scope screening", "SAR analysis", "Enzyme characterization"]}
             />
-            <PublicationRow
+            <ResearchCard
               title="Exploiting Nitroreductases for the Tailored Photoenzymatic Synthesis of Structurally Diverse Heterocyclic Compounds"
-              authors="Prats Luján A, Bhat MF, Acosta Marko EE, Fodran P, Poelarends GJ"
               journal="Chemistry – A European Journal, 30(56)"
               year="2024"
               doi="10.1002/chem.202402380"
+              accent="chlorophyll"
+              summary="Extended the nitroreductase photoenzymatic platform to build a structurally diverse set of heterocyclic products directly from simple starting materials in one pot."
+              skills={["Photobiocatalysis", "Reaction scope expansion", "Heterocycle synthesis"]}
+            />
+            <ResearchCard
+              title="Multigram-scale chemoenzymatic synthesis of diverse aminopolycarboxylic acids as potential metallo-β-lactamase inhibitors"
+              journal="Organic & Biomolecular Chemistry, 22, 491–495"
+              year="2024"
+              doi="10.1039/D3OB01405C"
+              accent="spectral"
+              summary="Scaled an enzymatic lyase route up to multigram quantities (&gt;99% conversion, 82% isolated yield, dr &gt;95:5), then built a protection/derivatization strategy around it — direct, hands-on evidence of taking a biocatalytic reaction from bench to scale."
+              skills={["Scale-up", "Process chemistry", "Enzymatic lyase catalysis", "Route design"]}
             />
           </div>
         </div>
@@ -333,12 +434,12 @@ export default function App() {
           <div className="rounded-2xl border border-ink-line bg-ink-panel p-8 max-w-2xl">
             <p className="font-mono text-xs text-spectral mb-3">Preply &middot; English &amp; corporate communication</p>
             <p className="text-muted leading-relaxed">
-              Alongside research, I teach English communication skills on Preply,
-              including corporate and professional communication coaching for
-              working professionals.
-            </p>
-            <p className="text-xs text-flavin/70 mt-3 font-mono">
-              I offer personalized English coaching focused on building confidence and real-life communication skills. Each lesson combines speaking, vocabulary, grammar, pronunciation, reading, listening, and writing through engaging, conversation-based activities. Lessons are tailored to  goals, whether for work, exams, travel, or everyday life, with practical feedback to help students become a more fluent and confident English speakers.
+              I offer personalized English coaching focused on building confidence and
+              real-life communication skills. Each lesson combines speaking, vocabulary,
+              grammar, pronunciation, reading, listening, and writing through engaging,
+              conversation-based activities. Lessons are tailored to individual goals,
+              whether for work, exams, travel, or everyday life, with practical feedback
+              to help students become more fluent and confident English speakers.
             </p>
           </div>
         </div>
