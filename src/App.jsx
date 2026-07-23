@@ -335,7 +335,7 @@ export default function App() {
               tagline="biocatalysis research desktop application"
               description="A desktop tool for biocatalysis researchers, built to organize and work with enzyme and reaction data during method development &mdash; grown out of the day-to-day needs of running a biocatalysis lab."
               tags={["Electron", "React", "Biocatalysis"]}
-              status={{ label: "shipped", tone: "chlorophyll" }}
+              status={{ label: "Live!", tone: "chlorophyll" }}
               links={[{ href: "https://faizan0623.github.io/Pherith/", label: "Open Pherith" }]}
             />
             <ProjectCard
@@ -343,7 +343,7 @@ export default function App() {
               tagline="pharmacy lab journal"
               description="An electronic lab journal built for pharmacy and pharmaceutical science settings, for recording experiments and lab work in a structured, searchable format."
               tags={["Web app", "Netlify", "Lab records"]}
-              status={{ label: "shipped", tone: "chlorophyll" }}
+              status={{ label: "Live!", tone: "chlorophyll" }}
               links={[{ href: "https://daftaros-elab.netlify.app", label: "Open Daftaros eLab" }]}
             />
             <ProjectCard
@@ -351,7 +351,7 @@ export default function App() {
               tagline="RDKit &middot; cumulative PMI for chemoenzymatic routes"
               description="A route analyzer for chemoenzymatic synthesis that computes cumulative Process Mass Intensity, E-factor, and atom economy &mdash; back-calculating mass balance through each step's yield, with RDKit deriving molecular weights directly from SMILES."
               tags={["React", "RDKit.js", "Green chemistry"]}
-              status={{ label: "shipped", tone: "chlorophyll" }}
+              status={{ label: "Live!", tone: "chlorophyll" }}
               links={[{ href: "https://green-mertrics.netlify.app", label: "Open Green Metrics" }]}
             />
             <ProjectCard
@@ -359,7 +359,7 @@ export default function App() {
               tagline="RDKit · enzyme substrate screening"
                 description="An interactive cheminformatics application that analyzes candidate substrates using RDKit-derived molecular descriptors and literature-inspired structure–activity relationships (SAR) to estimate substrate compatibility with different enzyme classes. Built as a practical computational tool for biocatalysis research."
               tags={["React", "RDKit.js", "Cheminformatics", "Biocatalysis"]}
-              status={{ label: "live", tone: "chlorophyll" }}
+              status={{ label: "Live!", tone: "chlorophyll" }}
               links={[
               {
                 href: "https://substrate-scope-scorer.netlify.app",
@@ -372,7 +372,7 @@ export default function App() {
               tagline="KNIME &middot; process optimization"
               description="A KNIME workflow linking DoE campaign outputs (yield, ee, conversion across conditions) to molecular descriptors of substrate and catalyst, aimed at spotting which structural features actually drive process performance."
               tags={["KNIME", "DoE", "Process chemistry"]}
-              status={{ label: "in progress", tone: "flavin" }}
+              status={{ label: "In Progress", tone: "flavin" }}
               links={[]}
             />
           </div>
