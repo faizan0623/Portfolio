@@ -347,6 +347,14 @@ export default function App() {
               links={[{ href: "https://daftaros-elab.netlify.app", label: "Open Daftaros eLab" }]}
             />
             <ProjectCard
+              title="Green Metrics"
+              tagline="RDKit &middot; cumulative PMI for chemoenzymatic routes"
+              description="A route analyzer for chemoenzymatic synthesis that computes cumulative Process Mass Intensity, E-factor, and atom economy &mdash; back-calculating mass balance through each step's yield, with RDKit deriving molecular weights directly from SMILES."
+              tags={["React", "RDKit.js", "Green chemistry"]}
+              status={{ label: "shipped", tone: "chlorophyll" }}
+              links={[{ href: "https://green-mertrics.netlify.app", label: "Open Green Metrics" }]}
+            />
+            <ProjectCard
               title="Substrate scope scorer"
               tagline="RDKit &middot; enzyme substrate screening"
               description="A rules-based RDKit pipeline that featurizes candidate substrates (functional groups, sterics, electronics) and scores likely acceptance by a given enzyme class, grounded in literature SAR rather than a black-box model."
