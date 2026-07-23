@@ -355,13 +355,22 @@ export default function App() {
               links={[{ href: "https://green-mertrics.netlify.app", label: "Open Green Metrics" }]}
             />
             <ProjectCard
-              title="Substrate scope scorer"
-              tagline="RDKit &middot; enzyme substrate screening"
-              description="A rules-based RDKit pipeline that featurizes candidate substrates (functional groups, sterics, electronics) and scores likely acceptance by a given enzyme class, grounded in literature SAR rather than a black-box model."
-              tags={["Python", "RDKit"]}
-              status={{ label: "in progress", tone: "flavin" }}
-              links={[]}
-            />
+             title="Substrate Scope Scorer"
+              tagline="RDKit · enzyme substrate screening"
+                description="An interactive cheminformatics application that analyzes candidate substrates using RDKit-derived molecular descriptors and literature-inspired structure–activity relationships (SAR) to estimate substrate compatibility with different enzyme classes. Built as a practical computational tool for biocatalysis research."
+              tags={["React", "RDKit.js", "Cheminformatics", "Biocatalysis"]}
+              status={{ label: "live", tone: "chlorophyll" }}
+              links={[
+              {
+                href: "https://substrate-scope-scorer.netlify.app",
+              label: "Live Demo",
+              },
+              {
+              href: "https://github.com/faizan0623/substrate-scope-scorer",
+                label: "GitHub",
+              },
+  ]}
+/>
             <ProjectCard
               title="DoE-to-descriptor correlator"
               tagline="KNIME &middot; process optimization"
