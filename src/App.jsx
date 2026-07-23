@@ -365,10 +365,7 @@ export default function App() {
                 href: "https://substrate-scope-scorer.netlify.app",
               label: "Live Demo",
               },
-              {
-              href: "https://github.com/faizan0623/substrate-scope-scorer",
-                label: "GitHub",
-              },
+              
   ]}
 />
             <ProjectCard
