@@ -363,10 +363,9 @@ export default function App() {
               links={[
               {
                 href: "https://substrate-scope-scorer.netlify.app",
-              label: "Live Demo",
+              label: "Open Substrate Scope Scorer",
               },
-              
-  ]}
+              ]}
 />
             <ProjectCard
               title="DoE-to-descriptor correlator"
