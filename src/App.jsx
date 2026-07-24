@@ -317,9 +317,10 @@ export default function App() {
               <p>
                 I'm currently building out a computational side to that domain expertise
                 &mdash; learning Python, RDKit, and KNIME to develop tools that connect
-                molecular structure, reaction data, and process outcomes. The two apps
-                below were the first step; the tools below those are what I'm building
-                as I go.
+                molecular structure, reaction data, and process outcomes. The demo of the apps
+                I've built so far is below, and I'm always looking for new opportunities to
+                combine my skills in biocatalysis, medicinal chemistry, process chemistry, and my newly found 
+                interest in cheminformatics.
               </p>
             </div>
           </div>
