@@ -70,19 +70,9 @@ function Badge({ children, tone = "chlorophyll" }) {
   );
 }
 
-  function ProjectCard({
-  title,
-  tagline,
-  description,
-  tags,
-  links,
-  status,
-  className = "",
-   }) {
+function ProjectCard({ title, tagline, description, tags, links, status }) {
   return (
-    <div
-  className={`group relative rounded-2xl border border-ink-line bg-ink-panel p-7 flex flex-col gap-4 transition-colors hover:border-chlorophyll/50 ${className}`}
->
+    <div className="group relative rounded-2xl border border-ink-line bg-ink-panel p-7 flex flex-col gap-4 transition-colors hover:border-chlorophyll/50">
       <div className="flex items-start justify-between gap-4">
         <h3 className="font-display text-xl text-paper">{title}</h3>
         {status && <Badge tone={status.tone}>{status.label}</Badge>}
@@ -327,8 +317,9 @@ export default function App() {
               <p>
                 I'm currently building out a computational side to that domain expertise
                 &mdash; learning Python, RDKit, and KNIME to develop tools that connect
-                molecular structure, reaction data, and process outcomes. The apps
-                below are the first steps in that direction, and are designed to help chemists and biocatalysis
+                molecular structure, reaction data, and process outcomes. The two apps
+                below were the first step; the tools below those are what I'm building
+                as I go.
               </p>
             </div>
           </div>
@@ -379,14 +370,14 @@ export default function App() {
             <ProjectCard
               title="DoE-to-descriptor correlator"
               tagline="KNIME &middot; process optimization"
-              description="An interactive web application for correlating Design of Experiments (DoE) results with molecular descriptors. The tool helps identify which substrate and catalyst features most strongly influence reaction performance, supporting data-driven process optimization."
+              description="A KNIME workflow linking DoE campaign outputs (yield, ee, conversion across conditions) to molecular descriptors of substrate and catalyst, aimed at spotting which structural features actually drive process performance."
               tags={["KNIME", "DoE", "Process chemistry"]}
               status={{ label: "Live!", tone: "chlorophyll" }}
               links={[
               {
                href: "https://doe-correlator.netlify.app",
               label: "Open DoE Correlator",
-              },
+               },
               ]}
             />
           </div>
