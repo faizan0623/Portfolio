@@ -366,19 +366,27 @@ export default function App() {
               },
               ]}
 />
-            <ProjectCard
-              title="DoE-to-descriptor correlator"
-              tagline="KNIME &middot; process optimization"
-              description="An interactive web application for correlating Design of Experiments (DoE) results with molecular descriptors. The tool helps identify which substrate and catalyst features most strongly influence reaction performance, supporting data-driven process optimization."
-              tags={["KNIME", "DoE", "Process chemistry"]}
-              status={{ label: "Live!", tone: "chlorophyll" }}
-              links={[
-              {
-               href: "https://doe-correlator.netlify.app",
-              label: "Open DoE Correlator",
-              },
-              ]}
-            />
+            <div className="md:col-span-2">
+  <ProjectCard
+    title="DoE–Descriptor Correlator"
+    tagline="KNIME · RDKit · Process optimization"
+    description="An interactive cheminformatics application that correlates Design of Experiments (DoE) data with molecular descriptors and enzyme mutation descriptors to identify structural drivers of yield, conversion, and enantioselectivity."
+    tags={[
+      "KNIME",
+      "RDKit",
+      "DoE",
+      "Statistics",
+      "Process Chemistry",
+    ]}
+    status={{ label: "Live!", tone: "chlorophyll" }}
+    links={[
+      {
+        href: "https://doe-correlator.netlify.app",
+        label: "Open DoE Correlator",
+      },
+    ]}
+  />
+</div>
           </div>
         </div>
       </section>
