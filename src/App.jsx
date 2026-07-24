@@ -317,9 +317,8 @@ export default function App() {
               <p>
                 I'm currently building out a computational side to that domain expertise
                 &mdash; learning Python, RDKit, and KNIME to develop tools that connect
-                molecular structure, reaction data, and process outcomes. The two apps
-                below were the first step; the tools below those are what I'm building
-                as I go.
+                molecular structure, reaction data, and process outcomes. The apps
+                below are the first steps in that direction, and are designed to help chemists and biocatalysis researchers make better decisions about enzyme selection, substrate scope, and reaction optimization.
               </p>
             </div>
           </div>
@@ -370,10 +369,15 @@ export default function App() {
             <ProjectCard
               title="DoE-to-descriptor correlator"
               tagline="KNIME &middot; process optimization"
-              description="A KNIME workflow linking DoE campaign outputs (yield, ee, conversion across conditions) to molecular descriptors of substrate and catalyst, aimed at spotting which structural features actually drive process performance."
+              description="An interactive web application for correlating Design of Experiments (DoE) results with molecular descriptors. The tool helps identify which substrate and catalyst features most strongly influence reaction performance, supporting data-driven process optimization."
               tags={["KNIME", "DoE", "Process chemistry"]}
-              status={{ label: "In Progress", tone: "flavin" }}
-              links={[]}
+              status={{ label: "Live!", tone: "chlorophyll" }}
+              links={[
+              {
+               href: "https://doe-correlator.netlify.app",
+              label: "Open DoE Correlator",
+              },
+              ]}
             />
           </div>
         </div>
